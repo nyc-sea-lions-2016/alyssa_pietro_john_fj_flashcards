@@ -4,12 +4,11 @@ get '/flashcards' do
 end
 
 post '/games' do
-  @deck = Deck.new
-  @deck.id = params[:game_info][:deck_id]
+  @deck = Deck.where(params[:game_info][:deck_id])
   if logged_in?
-    @game = Game.create(deck_id, user_id)
+    @game = Game.create(@deck.id, current_user.id)
   else
-    @game = Game.create(deck_id, user_id = 0)
+    @game = Game.create(@deck.id, 0)
   end
   redirect "games/#{@game.id}"
 end
