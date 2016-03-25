@@ -2,10 +2,11 @@
 # Login
 get '/sessions/new' do
 
+
 end
 
 
-post '/session/new' do
+post '/sessions/new' do
 
 end
 
