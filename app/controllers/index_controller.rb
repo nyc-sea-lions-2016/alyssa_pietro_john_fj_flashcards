@@ -6,6 +6,7 @@ end
 post '/games' do
   @deck = Deck.where(params[:game_info][:deck_id])
   if logged_in?
+    binding.pry
     @game = Game.create(@deck.id, current_user.id)
   else
     @game = Game.create(@deck.id, 0)
