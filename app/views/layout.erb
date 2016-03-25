@@ -2,21 +2,15 @@
 <html lang="en">
 
 <head>
-  <!-- Discussed in "The HTML <head> element", below -->
+  <link href='https://fonts.googleapis.com/css?family=Alegreya:700|Open+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/drop-in.css">
+  <link rel="stylesheet" href="../css/application.css">
 </head>
 
 <body>
   <header>
-    <h1><a href="/">Welcome to Banana Flashcards</a></h1>
-    <nav>
-      <ul>
-        <li><a href="#">LINK 1</a></li>
-        <li><a href="#">LINK 2</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
+    <h1><a href="/flashcards">Welcome to Banana Flashcards</a></h1>
     <nav>
       <ul>
         <% if logged_in? %>
@@ -26,10 +20,11 @@
           <li><a href="/login">Login</a></li>
           <li><a href="/register">Register</a></li>
         <% end %>
-      <!-- <li><a href="/decks/new">Create a new Deck</a></li> -->
       </ul>
     </nav>
-  <%= yield %>
+  </header>
+
+  <main>
     <%= yield %>
   </main>
 
