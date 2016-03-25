@@ -1,4 +1,3 @@
-
 # Login
 get '/sessions/new' do
  erb :"sessions/new"
