@@ -1,0 +1,11 @@
+<% if logged_in? %>
+<% end %>
+<main>
+  <ul>
+    <% @deeck.each do |deck| %>
+      <li>
+        <a href="/flashcards/<%= deck.id %>"><%= deck.name %></a>
+      </li>
+    <% end %>
+  </ul>
+</main>
