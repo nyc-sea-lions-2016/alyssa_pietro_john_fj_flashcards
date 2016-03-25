@@ -31,3 +31,8 @@ post '/users/new' do
     erb :"users/new"
   end
 end
+
+post '/logout' do
+  session.clear
+  redirect '/'
+end
