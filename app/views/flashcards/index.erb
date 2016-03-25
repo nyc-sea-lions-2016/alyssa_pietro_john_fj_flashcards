@@ -2,7 +2,9 @@
   <ul>
     <% @deck.each do |deck| %>
       <li>
-        <a href="/flashcards/<%= deck.id %>"><%= deck.name %></a>
+        <form method="POST" action="/games">
+          <input type="submit" value="<% @game.id %>"><%= deck.name %><br>
+        </form>
       </li>
     <% end %>
   </ul>
