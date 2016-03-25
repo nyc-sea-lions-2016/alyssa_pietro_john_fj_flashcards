@@ -4,7 +4,6 @@ class CreateUserTable < ActiveRecord::Migration
       t.string :username, null: false
       t.string :email, null: false
       t.string :password_digest, null: false
-      t.references :game
 
       t.timestamps, null: false
     end
