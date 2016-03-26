@@ -16,7 +16,6 @@ get '/games/:id' do
     @cards = Card.cards_in_game(@deck.id)
     @card_ids = Card.card_ids_string(@cards)
     response.set_cookie("game_cards_#{@game.id}", :value => @card_ids)
-    binding.pry
     @random_card = @cards.sample
   end
 
@@ -51,4 +50,3 @@ post '/games/:id' do
 
   redirect 'games/:id'
 end
-
