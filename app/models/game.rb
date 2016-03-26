@@ -5,7 +5,7 @@ class Game < ActiveRecord::Base
 
   def cards_in_deck
 
-  end 
+  end
 
 
   def correct_on_first_guess
@@ -15,4 +15,5 @@ class Game < ActiveRecord::Base
   def total_guesses
 
   end
+
 end
