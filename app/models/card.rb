@@ -3,8 +3,8 @@ class Card < ActiveRecord::Base
   has_many :guesses
   validates :prompt, :answer, presence: true
 
-  def cards_in_game(game_id)
-    Card.where(game_id: game_id)
+  def self.cards_in_game(deck_id)
+    Card.where(deck_id: deck_id)
   end
 
   def correct_answer?(card_id, response)

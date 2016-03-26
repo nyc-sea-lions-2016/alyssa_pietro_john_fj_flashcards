@@ -1,20 +1,20 @@
 get '/games/:id' do
-  binding.pry
   @game = Game.find_by(id: params[:id])
   @deck = Deck.find_by(id: @game.deck_id)
   @cards = request.cookies["game_cards_#{@game.id}"]
 
   if @cards && @cards.length > 0
     @random_card = @cards.sample
-    @cards = @cards.delete_if{|card| card.id == @random_card.id}
     response.set_cookie("game_cards_#{@game.id}", :value => @cards)
   elsif @cards && @cards.length == 0
     @game_over = true
     @game.correct_on_first_guess = request.cookies["correct_cards_#{@game.id}"].length
     #confirm that this is the name in the database (above)
   else
-    @cards = Card.cards_in_game(@game.id)
+    binding.pry
+    @cards = Card.cards_in_game(@deck.id)
     response.set_cookie("game_cards_#{@game.id}", :value => @cards)
+    @random_card = @cards.sample
   end
 
   erb :'games/show'
