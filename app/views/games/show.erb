@@ -1,13 +1,14 @@
 <main>
 
-  <h1>Prompt</h1>
+  <h1>Prompt:</h1>
 
-  <h3>Prompt will go here</h3>
+  <h3><%=@random_card.prompt%></h3>
 
-  <form method="post" action="/games/:id">
+  <form method="post" action="<%="/games/#{@game.id}"%>">
     <label for="answer-input">Answer:</label>
-    <input id="answer-input" name="response" type="text" placeholder="response">
-  <input type="submit" value="Submit">
+    <input id="answer-input" name="game_info[response]" type="text" placeholder="response">
+    <input type="hidden" name="game_info[current_card]" value="<%=@random_card%>">
+    <input type="submit" value="Submit">
   </form>
 
 </main>
