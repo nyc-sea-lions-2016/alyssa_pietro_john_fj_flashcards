@@ -3,6 +3,23 @@ get '/flashcards' do
   erb :'/flashcards/index'
 end
 
+get '/flashcards/new' do
+  @deck = Deck.new
+  erb :'/flashcards/new'
+end
+
+post '/flashcards/new' do
+  binding.pry
+  return "Hello World"
+  @deck = Deck.new #(params[:deck][:name])
+  @card = Card.new
+  if @deck.save
+    redirect '/'
+  else
+    erb :'/flashcards/new'
+  end
+end
+
 post '/games' do
   @deck = Deck.find_by(id: params[:game_info][:deck_id])
   if logged_in?
