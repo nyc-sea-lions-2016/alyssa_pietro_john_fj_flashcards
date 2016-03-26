@@ -1,0 +1,20 @@
+<% @games.each do |game| %>
+
+<h1><%= game.deck.deck_name %></h1>
+
+<table border="1">
+  <tr>
+    <td><b>Date</b></td>
+    <td><b>Cards in Deck</b></td>
+    <td><b>First Guess Correct</b></td>
+    <td><b>Total Guesses</b></td>
+  </tr>
+  <tr>
+    <td><%=game.created_at %></td>
+    <td><%=game.cards_in_deck%></td>
+    <td><%=game.correct_on_first_guess%></td>
+    <td><%=game.total_guesses%></td>
+  </tr>
+</table>
+
+<% end %>
