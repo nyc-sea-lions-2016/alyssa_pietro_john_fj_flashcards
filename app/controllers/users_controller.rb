@@ -32,6 +32,15 @@ post '/users/new' do
   end
 end
 
+#Access User Page
+
+get '/users/:id' do
+  @user = User.find_by(id: params[:id])
+  @games = @user.games
+  erb :'users/show'
+end
+
+
 post '/logout' do
   session.clear
   redirect '/'
