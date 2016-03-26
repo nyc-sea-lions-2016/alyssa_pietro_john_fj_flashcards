@@ -1,7 +1,7 @@
 <h1>Create a New Deck</h1>
 
 <main>
- <form method="POST" action="/flashcards/new">
+ <form method="POST" action="/decks/new">
     <label for="deck-input">Deck Name:</label>
     <input id="deck-input" name="deck[name]" type="text" value="<%= @deck.name %>" placeholder="deck name">
 
@@ -14,4 +14,3 @@
     <input type="submit" value="Create Deck!">
   </form>
 </main>
-
