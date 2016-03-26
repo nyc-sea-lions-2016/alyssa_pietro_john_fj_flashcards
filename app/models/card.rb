@@ -7,9 +7,14 @@ class Card < ActiveRecord::Base
     Card.where(deck_id: deck_id)
   end
 
-  def correct_answer?(card_id, response)
+  def self.correct_answer?(card_id, response)
     card = Card.find_by(id: card_id)
     card.answer == response
   end
 
+  def self.card_ids_string(cards)
+    cards.map{|card| card.id}.join(' ')
+  end
+
 end
+

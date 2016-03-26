@@ -4,16 +4,19 @@ get '/games/:id' do
   @cards = request.cookies["game_cards_#{@game.id}"]
 
   if @cards && @cards.length > 0
+    @card_ids = Card.card_ids_string(@cards)
     @random_card = @cards.sample
-    response.set_cookie("game_cards_#{@game.id}", :value => @cards)
+    response.set_cookie("game_cards_#{@game.id}", :value => @card_ids)
   elsif @cards && @cards.length == 0
+    @card_ids = Card.card_ids_string(@cards)
     @game_over = true
     @game.correct_on_first_guess = request.cookies["correct_cards_#{@game.id}"].length
-    #confirm that this is the name in the database (above)
+    #confirm that this name matches in database
   else
-    binding.pry
     @cards = Card.cards_in_game(@deck.id)
-    response.set_cookie("game_cards_#{@game.id}", :value => @cards)
+    @card_ids = Card.card_ids_string(@cards)
+    response.set_cookie("game_cards_#{@game.id}", :value => @card_ids)
+    binding.pry
     @random_card = @cards.sample
   end
 
