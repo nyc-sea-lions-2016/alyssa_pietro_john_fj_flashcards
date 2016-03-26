@@ -16,5 +16,15 @@ class Card < ActiveRecord::Base
     cards.map{|card| card.id}.join(' ')
   end
 
+  def self.num_cards_in_string(cards_string)
+    cards_string
+    # count number of card ids in string and return integer
+  end
+
+  def self.get_cards(card_id_string)
+    #create array of card objects. find objects using card ids stored in string, separated by space
+    string.split()
+  end
+
 end
 
