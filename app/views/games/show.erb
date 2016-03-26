@@ -1,14 +1,22 @@
 <main>
 
-  <h1>Prompt:</h1>
+  <% if @game_over %>
 
-  <h3><%=@random_card.prompt%></h3>
+    <h1>Game over! Thanks for playing!</h1>
 
-  <form method="post" action="<%="/games/#{@game.id}"%>">
-    <label for="answer-input">Answer:</label>
-    <input id="answer-input" name="game_info[response]" type="text" placeholder="response">
-    <input type="hidden" name="game_info[current_card]" value="<%=@random_card%>">
-    <input type="submit" value="Submit">
-  </form>
+  <% else %>
+
+    <h1>Prompt:</h1>
+
+    <h3><%=@random_card.prompt%></h3>
+
+    <form method="post" action="<%="/games/#{@game.id}"%>">
+      <label for="answer-input">Answer:</label>
+      <input id="answer-input" name="game_info[response]" type="text" placeholder="response">
+      <input type="hidden" name="game_info[current_card]" value="<%=@random_card%>">
+      <input type="submit" value="Submit">
+    </form>
+
+  <% end %>
 
 </main>
