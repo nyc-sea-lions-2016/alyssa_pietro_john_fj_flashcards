@@ -10,7 +10,7 @@ get '/games/:id' do
   elsif @cards && @cards.length == 0
     @card_ids = Card.card_ids_string(@cards)
     @game_over = true
-    @game.correct_on_first_guess = request.cookies["correct_cards_#{@game.id}"].length
+    @game.correct_on_first_guess = cookies["correct_cards_#{@game.id}"].length
     #confirm that this name matches in database
   else
     @cards = Card.cards_in_game(@deck.id)
@@ -27,12 +27,12 @@ post '/games/:id' do
   @user_response = params[:game_info][:response]
   @game_id = params[:id]
   @cards = request.cookies["correct_cards_#{@game.id}"]
-  correct_cards = request.cookies["correct_cards_#{@game.id}"]
+  correct_cards = cookies["correct_cards_#{@game.id}"]
   @current_card = params[:game_info][:current_card]
   correct = Card.correct_answer?(@current_card.id, @user_response)
 
   unless correct_cards
-    correct_cards = response.set_cookie("correct_cards_#{@game.id}", :value => [])
+    correct_cards = response.set_cookie("correct_cards_#{@game.id}", :value => '')
   end
 
   user_guess = Guess.create(card_id: @current_card.id, game_id: @game_id, entry: @user_response)
@@ -41,7 +41,7 @@ post '/games/:id' do
 
     # add card obj to correct cards hash
     # delete card from @cards cookie
-    response.set_cookie("correct_cards_#{@game.id}", :value => [])
+    response.set_cookie("correct_cards_#{@game.id}", :value => '')
   elsif correct
     # delete card from @cards cookie
   else
