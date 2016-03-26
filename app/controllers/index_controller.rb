@@ -4,10 +4,10 @@ get '/flashcards' do
 end
 
 post '/games' do
-  @deck = Deck.where(params[:game_info][:deck_id])
+  @deck = Deck.find_by(id: params[:game_info][:deck_id])
   if logged_in?
-    binding.pry
     @game = Game.create(@deck.id, current_user.id)
+    response.set_cookie("current_game_#{@game.id}", :value => {deck_id: @deck.id})
   else
     @game = Game.create(@deck.id, 0)
   end

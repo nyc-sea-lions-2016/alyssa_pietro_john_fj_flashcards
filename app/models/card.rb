@@ -7,4 +7,9 @@ class Card < ActiveRecord::Base
     Card.where(game_id: game_id)
   end
 
+  def correct_answer?(card_id, response)
+    card = Card.find_by(id: card_id)
+    card.answer == response
+  end
+
 end
