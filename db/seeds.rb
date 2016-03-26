@@ -2,7 +2,7 @@ require 'csv'
 
 
 
-countries_capitals_flashcards = '/Users/FJ_Junior/Development/code/phase-0-curriculum/phase-1/phase-2-flashcards-app/alyssa_pietro_john_fj_flashcards/db/seeds/countries_capitals_flashcards.csv'
+countries_capitals_flashcards = 'db/seeds/countries_capitals_flashcards.csv'
 
 first_deck = Deck.create(name: "Countries and Capitals")
 
@@ -20,7 +20,7 @@ CSV.foreach(countries_capitals_flashcards, options) do |line|
 end
 
 
-country_abbrev_flashcards = '/Users/FJ_Junior/Development/code/phase-0-curriculum/phase-1/phase-2-flashcards-app/alyssa_pietro_john_fj_flashcards/db/seeds/country_abbrev_flashcards.csv'
+country_abbrev_flashcards = 'db/seeds/country_abbrev_flashcards.csv'
 
 second_deck = Deck.create(name: "Countries and Abbreviations")
 
@@ -38,7 +38,7 @@ CSV.foreach(country_abbrev_flashcards, options) do |line|
 end
 
 
-easy_flashcards = '/Users/FJ_Junior/Development/code/phase-0-curriculum/phase-1/phase-2-flashcards-app/alyssa_pietro_john_fj_flashcards/db/seeds/easy_flashcards.csv'
+easy_flashcards = 'db/seeds/easy_flashcards.csv'
 
 third_deck = Deck.create(name: "Repeat After Me")
 
