@@ -3,7 +3,7 @@
     <% @decks.each do |deck| %>
       <li>
         <form method="POST" action="/games">
-          <input type="submit" name="game_info[deck_id]" value="<%= deck.name %>"><br>
+          <input type="submit" name="game_info[deck_name]" value="<%= deck.name %>"><br>
         </form>
       </li>
     <% end %>
