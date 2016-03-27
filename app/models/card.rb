@@ -17,13 +17,17 @@ class Card < ActiveRecord::Base
   end
 
   def self.num_cards_in_string(cards_string)
-    cards_string
-    # count number of card ids in string and return integer
+    cards_string.split(' ').size
   end
 
   def self.get_cards(card_id_string)
-    #create array of card objects. find objects using card ids stored in string, separated by space
-    string.split()
+    cards = []
+
+    card_id_string.split(' ').each do |card_id|
+      cards << Card.find_by(id: card_id)
+    end
+
+    cards
   end
 
 end

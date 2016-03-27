@@ -12,8 +12,7 @@ get '/games/:id' do
   elsif @cards_log && Card.num_cards_in_string(@cards_log) == 0
     @card_ids = Card.card_ids_string(@cards)
     @game_over = true
-    @game.correct_on_first_guess = Card.num_cards_in_string(cookies["correct_cards_#{@game.id}"]) #get length of card string
-    #confirm that this name matches in database
+    @game.correct_on_first_guess = Card.num_cards_in_string(cookies["correct_cards_#{@game.id}"])
   else
     @cards = Card.cards_in_game(@deck.id)
     @card_ids = Card.card_ids_string(@cards)
