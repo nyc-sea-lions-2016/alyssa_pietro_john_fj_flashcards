@@ -9,7 +9,7 @@ end
 
 post '/decks/new' do
   @deck = Deck.new(params[:deck])
-  @card = Card.new(params[:card])
+  @deck.cards << Card.create(params[:card])
   if @deck.save
     redirect '/'
   else
