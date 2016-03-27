@@ -3,7 +3,7 @@
 <% @cards.each do |card| %>
 
 <table>
-  <tr><%= card.prompt %></tr>
+  <tr><a href="/cards/<%=card.id%>"><%= card.prompt %></tr>
 </tabe>
 
 <% end %>
