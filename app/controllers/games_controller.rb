@@ -1,15 +1,16 @@
 get '/games/:id' do
   @game = Game.find_by(id: params[:id])
   @deck = Deck.find_by(id: @game.deck_id)
-  @cards_log = cookies["game_cards_#{@game.id}"]
-  @cards = Card.get_cards(@cards_log)
+  @cards_log = cookies["game_cards_#{@game.id}"] || nil
   @game_id = @game.id
 
   if @cards_log && Card.num_cards_in_string(@cards_log) > 0
+    @cards = Card.get_cards(@cards_log)
     @card_ids = Card.card_ids_string(@cards)
     @random_card = @cards.sample
     response.set_cookie("game_cards_#{@game.id}", :value => @card_ids)
   elsif @cards_log && Card.num_cards_in_string(@cards_log) == 0
+    @cards = Card.get_cards(@cards_log)
     @card_ids = Card.card_ids_string(@cards)
     @game_over = true
     @game.correct_on_first_guess = Card.num_cards_in_string(cookies["correct_cards_#{@game.id}"])
@@ -43,7 +44,7 @@ post '/games/:id' do
 
   # check if card is correct and that this is the first time guessing for this card
   if correct && Guess.first_guess?(@game_id, @current_card)
-    correct_cards_for_cookie = cookies["correct_cards_#{@game_id}"] + @current_card
+    correct_cards_for_cookie = cookies["correct_cards_#{@game_id}"] + " " + @current_card
     updated_game_cards = Card.remove_card(cookies["game_cards_#{@game_id}"], @current_card)
     response.set_cookie("correct_cards_#{@game_id}", :value => correct_cards_for_cookie)
     response.set_cookie("game_cards_#{@game_id}", :value => updated_game_cards)
