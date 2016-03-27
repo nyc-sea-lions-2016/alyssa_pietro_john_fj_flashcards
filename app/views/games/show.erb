@@ -13,7 +13,7 @@
     <form method="post" action="<%="/games/#{@game.id}"%>">
       <label for="answer-input">Answer:</label>
       <input id="answer-input" name="game_info[response]" type="text" placeholder="response">
-      <input type="hidden" name="game_info[current_card]" value="<%=@random_card%>">
+      <input type="hidden" name="game_info[current_card]" value="<%=@random_card.id%>">
       <input type="submit" value="Submit">
     </form>
 
