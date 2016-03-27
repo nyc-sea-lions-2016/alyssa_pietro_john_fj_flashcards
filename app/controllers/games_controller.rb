@@ -1,16 +1,18 @@
 get '/games/:id' do
   @game = Game.find_by(id: params[:id])
   @deck = Deck.find_by(id: @game.deck_id)
-  @cards = request.cookies["game_cards_#{@game.id}"]
+  @cards_log = cookies["game_cards_#{@game.id}"]
+  @cards = #insert logic for making array of card objects out of string from cookie (see Card model)
+  @game_id = @game.id
 
-  if @cards && @cards.length > 0
+  if @cards_log && Card.num_cards_in_string(@cards_log) > 0
     @card_ids = Card.card_ids_string(@cards)
     @random_card = @cards.sample
     response.set_cookie("game_cards_#{@game.id}", :value => @card_ids)
-  elsif @cards && @cards.length == 0
+  elsif @cards_log && Card.num_cards_in_string(@cards_log) == 0
     @card_ids = Card.card_ids_string(@cards)
     @game_over = true
-    @game.correct_on_first_guess = cookies["correct_cards_#{@game.id}"].length
+    @game.correct_on_first_guess = Card.num_cards_in_string(cookies["correct_cards_#{@game.id}"]) #get length of card string
     #confirm that this name matches in database
   else
     @cards = Card.cards_in_game(@deck.id)
