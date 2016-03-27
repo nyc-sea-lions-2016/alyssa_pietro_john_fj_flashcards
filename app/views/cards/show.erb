@@ -1,3 +1,5 @@
+<main>
+
 <h3>Prompt</h3>
 
 <%= @card.prompt %>
@@ -8,3 +10,7 @@
 
 <a href="/cards/<%= @card.id %>/edit">Edit</a>
 <a href="/cards/<%= @card.id %>">Delete</a>
+
+<li><a href="/decks/<%=@card.deck.id%>">Back to Deck</a></li>
+
+</main>

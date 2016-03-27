@@ -1,8 +1,9 @@
+<main>
+
 <h1>Create a New Deck</h1>
 
 <%= erb :_errors %>
 
-<main>
  <form method="POST" action="/decks/new">
     <label for="deck-input">Deck Name:</label>
     <input id="deck-input" name="deck[name]" type="text" placeholder="deck name">

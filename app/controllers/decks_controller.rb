@@ -23,7 +23,3 @@ get '/decks/:id' do
   @cards = @deck.cards
   erb :'decks/show'
 end
-
-get '/decks/:id/edit' do
-
-end
