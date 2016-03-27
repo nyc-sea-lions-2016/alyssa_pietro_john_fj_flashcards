@@ -30,5 +30,9 @@ class Card < ActiveRecord::Base
     cards
   end
 
+  def self.remove_card(cards_string, card_id)
+    cards_string.split(' ').delete_if{|num| num == card_id}.join(' ')
+  end
+
 end
 

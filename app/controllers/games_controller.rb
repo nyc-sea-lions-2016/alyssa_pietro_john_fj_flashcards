@@ -2,7 +2,7 @@ get '/games/:id' do
   @game = Game.find_by(id: params[:id])
   @deck = Deck.find_by(id: @game.deck_id)
   @cards_log = cookies["game_cards_#{@game.id}"]
-  @cards = #insert logic for making array of card objects out of string from cookie (see Card model)
+  @cards = Card.get_cards(@cards_log)
   @game_id = @game.id
 
   if @cards_log && Card.num_cards_in_string(@cards_log) > 0
@@ -25,31 +25,39 @@ get '/games/:id' do
 end
 
 post '/games/:id' do
+  # user response, game_id, current_card are passed through
   @user_response = params[:game_info][:response]
   @game_id = params[:id]
-  @cards = request.cookies["correct_cards_#{@game.id}"]
-  correct_cards = cookies["correct_cards_#{@game.id}"]
   @current_card = params[:game_info][:current_card]
-  correct = Card.correct_answer?(@current_card.id, @user_response)
 
-  unless correct_cards
-    correct_cards = response.set_cookie("correct_cards_#{@game.id}", :value => '')
+  #create instance of user guess to relate to game
+  user_guess = Guess.create(card_id: @current_card, game_id: @game_id, entry: @user_response)
+
+  # check if user answer was correct
+  correct = Card.correct_answer?(@current_card, @user_response)
+
+  # check if correct cards cookie already exists. if it doesn't set to empty string
+  if !cookies["correct_cards_#{@game_id}"]
+    response.set_cookie("correct_cards_#{@game_id}", :value => '')
   end
 
-  user_guess = Guess.create(card_id: @current_card.id, game_id: @game_id, entry: @user_response)
+  # check if card is correct and that this is the first time guessing for this card
+  if correct && Guess.first_guess?(@game_id, @current_card)
+    correct_cards_for_cookie = cookies["correct_cards_#{@game_id}"] + @current_card
+    updated_game_cards = Card.remove_card(cookies["game_cards_#{@game_id}"], @current_card)
+    response.set_cookie("correct_cards_#{@game_id}", :value => correct_cards_for_cookie)
+    response.set_cookie("game_cards_#{@game_id}", :value => updated_game_cards)
 
-  if correct && Guess.first_guess?(@game_id, @current_card.id)
+  binding.pry
 
-    # add card obj to correct cards hash
-    # delete card from @cards cookie
-    response.set_cookie("correct_cards_#{@game.id}", :value => '')
   elsif correct
-    # delete card from @cards cookie
+    updated_game_cards = Card.remove_card(cookies["game_cards_#{@game_id}"], @current_card)
+    response.set_cookie("game_cards_#{@game_id}", :value => updated_game_cards)
   else
     # do nothing and redirect
   end
 
 
-  redirect 'games/:id'
+  redirect "/games/#{@game_id}"
 end
 
