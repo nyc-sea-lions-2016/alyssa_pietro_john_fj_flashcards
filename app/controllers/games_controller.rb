@@ -48,8 +48,6 @@ post '/games/:id' do
     response.set_cookie("correct_cards_#{@game_id}", :value => correct_cards_for_cookie)
     response.set_cookie("game_cards_#{@game_id}", :value => updated_game_cards)
 
-  binding.pry
-
   elsif correct
     updated_game_cards = Card.remove_card(cookies["game_cards_#{@game_id}"], @current_card)
     response.set_cookie("game_cards_#{@game_id}", :value => updated_game_cards)
