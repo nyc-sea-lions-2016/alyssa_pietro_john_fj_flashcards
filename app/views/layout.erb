@@ -15,13 +15,13 @@
       <ul>
         <% if logged_in? %>
           <li><a href="/">Home</a></li>
+          <li><a href="/decks">Edit Decks</a></li>
           <li><a href="/logout">Logout</a></li>
         <% else %>
           <li><a href="/sessions/new">Login</a></li>
           <li><a href="/users/new">Register</a></li>
         <% end %>
         <li><a href="/decks/new">Create a New Deck</a></li>
-        <li><a href="/decks">Edit Decks</a></li>
       </ul>
     </nav>
   </header>
