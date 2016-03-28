@@ -1,0 +1,19 @@
+<main>
+
+<h1>Create a New Deck</h1>
+
+<%= erb :_errors %>
+
+ <form method="POST" action="/decks/new">
+    <label for="deck-input">Deck Name:</label>
+    <input id="deck-input" name="deck[name]" type="text" placeholder="deck name">
+
+    <label for="card-prompt-input">Prompt:</label>
+    <input id="card-prompt-input" name="card[prompt]" type="text" placeholder="prompt">
+
+    <label for="card-answer-input">Answer:</label>
+    <input id="card-answer-input" name="card[answer]" type="text" placeholder="answer">
+
+    <input type="submit" value="Create Deck!">
+  </form>
+</main>

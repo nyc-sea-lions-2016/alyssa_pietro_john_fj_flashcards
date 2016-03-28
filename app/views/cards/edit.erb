@@ -1,0 +1,17 @@
+<main>
+
+<h1>Edit Card Information</h1>
+
+<form method="POST" action="/cards/<%=@card.id%>/edit">
+  <input type="hidden" name="_method" value="PUT">
+
+  <label for="title-input" class="block mar-b-1">Prompt:</label>
+ <input id="card-prompt-input" name="card[prompt]" type="text" placeholder="New Card Prompt">
+
+ <label for="title-input" class="block mar-b-1">Answer:</label>
+<input id="card-answer-input" name="card[answer]" type="text" placeholder="New Card Answer">
+
+  <input type="submit" value="Edit Card">
+</form>
+
+</main>

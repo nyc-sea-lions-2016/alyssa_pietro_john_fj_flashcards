@@ -1,0 +1,13 @@
+<main>
+
+<h1>Listing All of the Prompts for this Deck</h1>
+
+<% @cards.each do |card| %>
+
+<table>
+  <tr><a href="/cards/<%=card.id%>"><%= card.prompt %></tr>
+</tabe>
+
+<% end %>
+
+</main>
