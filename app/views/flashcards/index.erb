@@ -1,9 +1,10 @@
 <main>
-  <ul>
+
+  <ul class="small-11 large-9 columns">
     <% @decks.each do |deck| %>
-      <li>
+      <li class="menu">
         <form method="POST" action="/games">
-          <input type="submit" name="game_info[deck_name]" value="<%= deck.name %>"><br>
+          <input type="submit" class="large success button" name="game_info[deck_name]" value="<%= deck.name %>"><br>
         </form>
       </li>
     <% end %>

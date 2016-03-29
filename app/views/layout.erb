@@ -2,17 +2,21 @@
 <html lang="en">
 
 <head>
-  <link href='https://fonts.googleapis.com/css?family=Alegreya:700|Open+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="../css/normalize.css">
-  <link rel="stylesheet" href="../css/drop-in.css">
-  <link rel="stylesheet" href="../css/application.css">
+
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/foundation.min.css">
+<link rel="stylesheet" href="css/app.css">
+
+<link rel="stylesheet" href="js/foundation.min.js">
+<link rel="stylesheet" href="js/app.js">
+
 </head>
 
 <body>
-  <header>
+  <header class="small-12 large-12 columns">
     <h1><a href="/flashcards">Welcome to Banana Flashcards</a></h1>
     <nav>
-      <ul>
+      <ul class="menu">
         <% if logged_in? %>
           <li><a href="/">Home</a></li>
           <li><a href="/decks">Edit Decks</a></li>
@@ -31,7 +35,6 @@
   </main>
 
   <footer>
-    <p>FOOTER TEXT</p>
   </footer>
 </body>
 </html>
