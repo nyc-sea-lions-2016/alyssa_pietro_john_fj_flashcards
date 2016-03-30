@@ -3,20 +3,19 @@
 
 <head>
 
-<link rel="stylesheet" href="css/normalize.css">
-<link rel="stylesheet" href="css/foundation.min.css">
-<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="/css/normalize.css">
+<link rel="stylesheet" href="/css/foundation.min.css">
+<link rel="stylesheet" href="/css/app.css">
 
-<link rel="stylesheet" href="js/foundation.min.js">
-<link rel="stylesheet" href="js/app.js">
-
+<link src="/js/foundation.min.js">
+<link src="/js/app.js">
 </head>
 
 <body>
-  <header class="small-12 large-12 columns">
-    <h1><a href="/flashcards">Welcome to Banana Flashcards</a></h1>
+  <header class="top-bar">
+    <h3 class="top-bar-title"><a href="/flashcards">Welcome to Banana Flashcards</a></h3>
     <nav>
-      <ul class="menu">
+      <ul class="menu top-bar-right">
         <% if logged_in? %>
           <li><a href="/">Home</a></li>
           <li><a href="/decks">Edit Decks</a></li>
